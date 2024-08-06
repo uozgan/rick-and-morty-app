@@ -1,9 +1,15 @@
 import React from "react";
 
-const CharacterList = () => {
+interface CharacterListProps {
+  data: any;
+}
+
+const CharacterList = ({ data }: CharacterListProps) => {
   return (
     <div>
-      <h4>CharacterList</h4>
+      {data.results.map((character: any) => (
+        <div key={character.name}>{character.name}</div> //TODO: CharacterCard Implementation
+      ))}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { baseApiUrl } from "../config/constants";
+
 axios.defaults.baseURL = baseApiUrl;
 
 interface UseAxiosProps {
@@ -16,7 +17,7 @@ const useAxios = ({ url }: UseAxiosProps) => {
     const fetchData = async () => {
       try {
         const res = await axios.get(url);
-        setResponse(res);
+        setResponse(res.data);
       } catch (err) {
         if (axios.isAxiosError(err)) {
           setError(err);
