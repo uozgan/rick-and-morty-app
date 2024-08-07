@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import CharacterList from "../components/CharacterList";
 import useAxios from "../api/useAxios";
 import Searchbar from "../components/Searchbar";
+import GenderFilter from "../components/GenderFilter";
 
 const HomePage = () => {
   const [page, setPage] = useState<number>(1);
   const [name, setName] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
 
   const { response, error, loading } = useAxios({
-    url: `/character?page=${page}&name=${name}`,
+    url: `/character?page=${page}&name=${name}&gender=${gender}`,
   });
 
   if (loading) {
@@ -24,7 +26,7 @@ const HomePage = () => {
     <div>
       <h3>Home Page</h3>
       <Searchbar onSearch={(search) => setName(search)} />
-      {/* <Filter /> */}
+      <GenderFilter onFilter={(gen) => setGender(gen)} />
 
       <CharacterList data={response} />
     </div>
