@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import CharacterList from "../components/CharacterList";
 import useAxios from "../api/useAxios";
 
 const HomePage = () => {
-  const { response, error, loading } = useAxios({ url: "/character" });
+  const [page, setPage] = useState<number>(1);
+
+  const { response, error, loading } = useAxios({
+    url: `/character?page=${page}`,
+  });
 
   if (loading) {
     return <h4>Loading</h4>;
@@ -13,12 +17,14 @@ const HomePage = () => {
   }
 
   console.log(response);
+
   return (
     <div>
       <h3>Home Page</h3>
-      <div>
-        <CharacterList data={response} />
-      </div>
+      {/* <Searchbar /> */}
+      {/* <Filter /> */}
+
+      <CharacterList data={response} />
     </div>
   );
 };
