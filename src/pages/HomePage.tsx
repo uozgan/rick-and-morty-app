@@ -5,9 +5,10 @@ import Searchbar from "../components/Searchbar";
 
 const HomePage = () => {
   const [page, setPage] = useState<number>(1);
+  const [name, setName] = useState<string>("");
 
   const { response, error, loading } = useAxios({
-    url: `/character?page=${page}`,
+    url: `/character?page=${page}&name=${name}`,
   });
 
   if (loading) {
@@ -22,7 +23,7 @@ const HomePage = () => {
   return (
     <div>
       <h3>Home Page</h3>
-      <Searchbar onSearch={() => {}} />
+      <Searchbar onSearch={(search) => setName(search)} />
       {/* <Filter /> */}
 
       <CharacterList data={response} />
