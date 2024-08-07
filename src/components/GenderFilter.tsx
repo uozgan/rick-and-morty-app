@@ -17,6 +17,12 @@ const GenderFilter = ({ onFilter }: GenderFilterProps) => {
 
   return (
     <div className="gender-filter">
+      <button
+        className={selectedGender === "" ? "active" : ""}
+        onClick={() => handleToggle("")}
+      >
+        All
+      </button>
       {allGenders.map((gender, i) => (
         <button
           key={i}
