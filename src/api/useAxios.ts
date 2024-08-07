@@ -9,7 +9,7 @@ interface UseAxiosProps {
 }
 
 const useAxios = ({ url }: UseAxiosProps) => {
-  const [response, setResponse] = useState<AxiosResponse>();
+  const [response, setResponse] = useState<AxiosResponse | any>();
   const [error, setError] = useState<AxiosError | string>("");
   const [loading, setLoading] = useState<Boolean>(true);
 

@@ -7,9 +7,9 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ character, onClick }: CharacterCardProps) => {
   return (
-    <div>
+    <div onClick={onClick}>
       CharacterCard
-      <div onClick={onClick}>{character.name}</div>
+      <div>{character.name}</div>
       <img src={character.image} alt={character.name} />
     </div>
   );
