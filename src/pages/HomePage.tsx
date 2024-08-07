@@ -3,6 +3,7 @@ import CharacterList from "../components/CharacterList";
 import useAxios from "../api/useAxios";
 import Searchbar from "../components/Searchbar";
 import GenderFilter from "../components/GenderFilter";
+import Pagination from "../components/Pagination";
 
 const HomePage = () => {
   const [page, setPage] = useState<number>(1);
@@ -27,8 +28,11 @@ const HomePage = () => {
       <h3>Home Page</h3>
       <Searchbar onSearch={(search) => setName(search)} />
       <GenderFilter onFilter={(gen) => setGender(gen)} />
-
       <CharacterList data={response} />
+      <Pagination
+        currentPage={page}
+        onPageChange={(page: number) => setPage(page)}
+      />
     </div>
   );
 };
