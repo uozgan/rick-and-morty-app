@@ -7,7 +7,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <h1>Rick and Morty App</h1>
         <Routes>
           <Route path="/" element={<HomePage />} />
         </Routes>

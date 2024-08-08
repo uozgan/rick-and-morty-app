@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/GenderFilter.css";
 
 interface GenderFilterProps {
   onFilter: (gender: string) => void;
@@ -16,19 +17,14 @@ const GenderFilter = ({ onFilter }: GenderFilterProps) => {
   };
 
   return (
-    <div className="gender-filter">
-      <button
-        className={selectedGender === "" ? "active" : ""}
-        onClick={() => handleToggle("")}
-      >
+    <div className="filter-buttons">
+      <button className="filter-btn" onClick={() => handleToggle("")}>
         All
       </button>
       {allGenders.map((gender, i) => (
         <button
           key={i}
-          className={
-            selectedGender === gender.toLocaleLowerCase() ? "active" : ""
-          }
+          className="filter-btn"
           onClick={() => handleToggle(gender)}
         >
           {gender}

@@ -1,0 +1,31 @@
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  background-color: #97ce4c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #72a13a;
+}
+
+@media (max-width: 480px) {
+  .filter-buttons {
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .filter-btn {
+    padding: 5px 10px;
+  }
+}

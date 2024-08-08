@@ -1,8 +1,10 @@
 import React from "react";
+import "../styles/CharacterDetail.css";
+import { Character } from "../types/Character";
 
 interface CharacterDetailProps {
   onBack: () => void;
-  characterDetails: any;
+  characterDetails: Character;
 }
 
 const CharacterDetail = ({
@@ -10,19 +12,37 @@ const CharacterDetail = ({
   characterDetails,
 }: CharacterDetailProps) => {
   return (
-    <div className="character-detail">
-      <button onClick={onBack}>Back</button>
-
+    <div className="character-detail-container">
       {characterDetails && (
-        <div>
-          <img src={characterDetails.image} alt={characterDetails.name} />
-          <h2>{characterDetails.name}</h2>
-          <p>Status: {characterDetails.status}</p>
-          <p>Species: {characterDetails.species}</p>
-          <p>Gender: {characterDetails.gender}</p>
-          <p>Origin: {characterDetails.origin.name}</p>
+        <div className="character-detail-content">
+          <img
+            src={characterDetails.image}
+            alt={characterDetails.name}
+            className="character-image"
+          />
+          <div className="character-info">
+            <h2 className="character-name">{characterDetails.name}</h2>
+            <p>
+              <strong>Status:</strong> {characterDetails.status}
+            </p>
+            <p>
+              <strong>Locatio</strong>n: {characterDetails.location.name}
+            </p>
+            <p>
+              <strong>Species</strong>: {characterDetails.species}
+            </p>
+            <p>
+              <strong>Gender:</strong> {characterDetails.gender}
+            </p>
+            <p>
+              <strong>Origin:</strong> {characterDetails.origin.name}
+            </p>
+          </div>
         </div>
       )}
+      <button onClick={onBack} className="back-button">
+        Back
+      </button>
     </div>
   );
 };

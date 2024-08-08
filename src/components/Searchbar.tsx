@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/Searchbar.css";
 
 interface SearchBarProps {
   onSearch: (search: string) => void;
@@ -12,14 +13,17 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <div>
+    <div className="searchbar-container">
       <input
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search characters..."
+        className="searchbar"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className="filter-btn">
+        Search
+      </button>
     </div>
   );
 };

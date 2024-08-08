@@ -5,6 +5,8 @@ import Searchbar from "../components/Searchbar";
 import GenderFilter from "../components/GenderFilter";
 import Pagination from "../components/Pagination";
 import CharacterDetail from "../components/CharacterDetail";
+import "../styles/HomePage.css";
+import { Character } from "../types/Character";
 
 const HomePage = () => {
   const [page, setPage] = useState<number>(1);
@@ -19,40 +21,55 @@ const HomePage = () => {
   });
 
   if (loading) {
-    return <h4>Loading</h4>;
+    return <h4 className="loading">Loading...</h4>;
   }
 
-  if (error) {
-    return <p>Something went wrong</p>;
+  if (error || !response) {
+    return <p className="error">Something went wrong!</p>;
   }
-
-  console.log(response);
 
   return (
-    <div>
+    <div className="homepage-container">
+      <img
+        src="/rick-and-morty.svg"
+        alt="Rick and Morty"
+        className="title-image"
+      />
       {selectedCharacterId ? (
         <CharacterDetail
           onBack={() => setSelectedCharacterId(null)}
           characterDetails={response.results.find(
-            (char: any) => char.id === selectedCharacterId
+            (char: Character) => char.id === selectedCharacterId
           )}
         />
       ) : (
         <div>
-          <Searchbar onSearch={(search) => setName(search)} />
-          <GenderFilter onFilter={(gen) => setGender(gen)} />
+          <div className="search-filter-container">
+            <Searchbar
+              onSearch={(search) => {
+                setName(search);
+                setGender("");
+              }}
+            />
+            <GenderFilter
+              onFilter={(gen) => {
+                setGender(gen);
+                setName("");
+              }}
+            />
+          </div>
           <CharacterList
             data={response}
             onCharacterClick={(id) => {
               setSelectedCharacterId(id);
             }}
           />
+          <Pagination
+            currentPage={page}
+            onPageChange={(page: number) => setPage(page)}
+          />
         </div>
       )}
-      <Pagination
-        currentPage={page}
-        onPageChange={(page: number) => setPage(page)}
-      />
     </div>
   );
 };
